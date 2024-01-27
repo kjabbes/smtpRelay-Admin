@@ -2,7 +2,7 @@
 
 namespace smtpRelay_Admin
 {
-    partial class smtpRelayForm
+    partial class SmtpRelayForm
     {
 
         private System.ComponentModel.IContainer components = null;
@@ -43,8 +43,8 @@ namespace smtpRelay_Admin
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(smtpRelayForm));
-            this.gBoxConnection = new System.Windows.Forms.GroupBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SmtpRelayForm));
+            this.infoBoxConnection = new System.Windows.Forms.GroupBox();
             this.checkBoxAuth = new System.Windows.Forms.CheckBox();
             this.textPassword = new System.Windows.Forms.TextBox();
             this.textUser = new System.Windows.Forms.TextBox();
@@ -68,28 +68,28 @@ namespace smtpRelay_Admin
             this.buttonSend = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
             this.buttonReset = new System.Windows.Forms.Button();
-            this.gBoxConnection.SuspendLayout();
+            this.infoBoxConnection.SuspendLayout();
             this.gBoxEmailConfiguration.SuspendLayout();
             this.gBoxStatus.SuspendLayout();
             this.SuspendLayout();
             // 
-            // gBoxConnection
+            // InfoBoxConnection
             // 
-            this.gBoxConnection.Controls.Add(this.checkBoxAuth);
-            this.gBoxConnection.Controls.Add(this.textPassword);
-            this.gBoxConnection.Controls.Add(this.textUser);
-            this.gBoxConnection.Controls.Add(this.textHost);
-            this.gBoxConnection.Controls.Add(this.labelPassword);
-            this.gBoxConnection.Controls.Add(this.labelUser);
-            this.gBoxConnection.Controls.Add(this.labelHost);
-            this.gBoxConnection.Controls.Add(this.textPort);
-            this.gBoxConnection.Location = new System.Drawing.Point(24, 29);
-            this.gBoxConnection.Name = "gBoxConnection";
-            this.gBoxConnection.Size = new System.Drawing.Size(842, 259);
-            this.gBoxConnection.TabIndex = 0;
-            this.gBoxConnection.TabStop = false;
-            this.gBoxConnection.Text = "Connection Configuration";
-            this.gBoxConnection.Enter += new System.EventHandler(this.gBoxConnection_Enter);
+            this.infoBoxConnection.Controls.Add(this.checkBoxAuth);
+            this.infoBoxConnection.Controls.Add(this.textPassword);
+            this.infoBoxConnection.Controls.Add(this.textUser);
+            this.infoBoxConnection.Controls.Add(this.textHost);
+            this.infoBoxConnection.Controls.Add(this.labelPassword);
+            this.infoBoxConnection.Controls.Add(this.labelUser);
+            this.infoBoxConnection.Controls.Add(this.labelHost);
+            this.infoBoxConnection.Controls.Add(this.textPort);
+            this.infoBoxConnection.Location = new System.Drawing.Point(24, 29);
+            this.infoBoxConnection.Name = "infoBoxConnection";
+            this.infoBoxConnection.Size = new System.Drawing.Size(842, 259);
+            this.infoBoxConnection.TabIndex = 0;
+            this.infoBoxConnection.TabStop = false;
+            this.infoBoxConnection.Text = "Connection Configuration";
+            this.infoBoxConnection.Enter += new System.EventHandler(this.InfoBoxConnection_Enter);
             // 
             // checkBoxAuth
             // 
@@ -151,7 +151,7 @@ namespace smtpRelay_Admin
             this.labelHost.Size = new System.Drawing.Size(56, 25);
             this.labelHost.TabIndex = 6;
             this.labelHost.Text = "Host";
-            this.labelHost.Click += new System.EventHandler(this.labelHost_Click);
+            this.labelHost.Click += new System.EventHandler(this.LabelHost_Click);
             // 
             // textPort
             // 
@@ -295,7 +295,7 @@ namespace smtpRelay_Admin
             this.buttonReset.Text = "Reset";
             this.buttonReset.UseVisualStyleBackColor = true;
             // 
-            // smtpRelayForm
+            // SmtpRelayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -305,14 +305,14 @@ namespace smtpRelay_Admin
             this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.gBoxStatus);
             this.Controls.Add(this.gBoxEmailConfiguration);
-            this.Controls.Add(this.gBoxConnection);
+            this.Controls.Add(this.infoBoxConnection);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "smtpRelayForm";
+            this.Name = "SmtpRelayForm";
             this.Text = "smtpRelay Admin";
-            this.Load += new System.EventHandler(this.smtpRelayForm_Load);
-            this.gBoxConnection.ResumeLayout(false);
-            this.gBoxConnection.PerformLayout();
+            this.Load += new System.EventHandler(this.SmtpRelayForm_Load);
+            this.infoBoxConnection.ResumeLayout(false);
+            this.infoBoxConnection.PerformLayout();
             this.gBoxEmailConfiguration.ResumeLayout(false);
             this.gBoxEmailConfiguration.PerformLayout();
             this.gBoxStatus.ResumeLayout(false);
@@ -323,7 +323,7 @@ namespace smtpRelay_Admin
 
         #endregion
 
-        private System.Windows.Forms.GroupBox gBoxConnection;
+        private System.Windows.Forms.GroupBox infoBoxConnection;
         private System.Windows.Forms.TextBox textPort;
         private System.Windows.Forms.TextBox textUser;
         private System.Windows.Forms.TextBox textHost;

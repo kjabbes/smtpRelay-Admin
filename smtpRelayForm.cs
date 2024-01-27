@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace smtpRelay_Admin
 {
-    public partial class smtpRelayForm : Form
+    public partial class SmtpRelayForm : Form
     {
 
-        public smtpRelayForm()
+        public SmtpRelayForm()
         {
             InitializeComponent();
             this.checkBoxAuth.Click += new EventHandler(CheckBoxAuth_CheckedChanged);
@@ -31,9 +31,8 @@ namespace smtpRelay_Admin
             string username = textUser.Text;
             string password = textPassword.Text;
             bool useAuth = checkBoxAuth.Checked;
-            bool isValidFrom, isValidTo;
 
-            if (!TextBoxValidation(out isValidFrom, out isValidTo))
+            if (!TextBoxValidation(out bool isValidFrom, out bool isValidTo))
             {
                 // Fields are not filled or contain invalid email addresses, display appropriate messages
                 string errorMessage = "Please fill in the following fields:\n";
@@ -225,6 +224,10 @@ namespace smtpRelay_Admin
             textPort.Text = "587";
             textUser.Clear();
             textPassword.Clear();
+            textFrom.Clear();
+            textTo.Clear();
+            textSubject.Clear();
+            textMessage.Clear();
             textBoxLog.Clear();
             checkBoxAuth.Checked = false;
         }
@@ -238,28 +241,20 @@ namespace smtpRelay_Admin
                     break;
             }
         }
-        private void WriteLineAndReadResponse(string command, StreamReader reader, StreamWriter writer)
-        {
-            writer.WriteLine(command);
-            AppendLog("Gesendet: " + command);
-            var response = reader.ReadLine();
-            AppendLog("Empfangen: " + response);
-        }
         private void CheckBoxAuth_CheckedChanged(object sender, EventArgs e)
         {
-            bool useAuth = checkBoxAuth.Checked;
             textUser.ReadOnly = !checkBoxAuth.Checked;
             textPassword.ReadOnly = !checkBoxAuth.Checked;
         }
-        private void gBoxConnection_Enter(object sender, EventArgs e)
+        private void InfoBoxConnection_Enter(object sender, EventArgs e)
         {
 
         }
-        private void labelHost_Click(object sender, EventArgs e)
+        private void LabelHost_Click(object sender, EventArgs e)
         {
 
         }
-        private void smtpRelayForm_Load(object sender, EventArgs e)
+        private void SmtpRelayForm_Load(object sender, EventArgs e)
         {
             LoadLastInput();
         }

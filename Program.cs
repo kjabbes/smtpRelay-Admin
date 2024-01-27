@@ -16,7 +16,7 @@ namespace smtpRelay_Admin
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new smtpRelayForm());
+            Application.Run(new SmtpRelayForm());
         }
     }
 }
