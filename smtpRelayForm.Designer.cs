@@ -43,7 +43,9 @@ namespace smtpRelay_Admin
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(smtpRelayForm));
             this.gBoxConnection = new System.Windows.Forms.GroupBox();
+            this.checkBoxAuth = new System.Windows.Forms.CheckBox();
             this.textPassword = new System.Windows.Forms.TextBox();
             this.textUser = new System.Windows.Forms.TextBox();
             this.textHost = new System.Windows.Forms.TextBox();
@@ -65,7 +67,7 @@ namespace smtpRelay_Admin
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.buttonSend = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
-            this.checkSsl = new System.Windows.Forms.CheckBox();
+            this.buttonReset = new System.Windows.Forms.Button();
             this.gBoxConnection.SuspendLayout();
             this.gBoxEmailConfiguration.SuspendLayout();
             this.gBoxStatus.SuspendLayout();
@@ -73,13 +75,13 @@ namespace smtpRelay_Admin
             // 
             // gBoxConnection
             // 
+            this.gBoxConnection.Controls.Add(this.checkBoxAuth);
             this.gBoxConnection.Controls.Add(this.textPassword);
             this.gBoxConnection.Controls.Add(this.textUser);
             this.gBoxConnection.Controls.Add(this.textHost);
             this.gBoxConnection.Controls.Add(this.labelPassword);
             this.gBoxConnection.Controls.Add(this.labelUser);
             this.gBoxConnection.Controls.Add(this.labelHost);
-            this.gBoxConnection.Controls.Add(this.checkSsl);
             this.gBoxConnection.Controls.Add(this.textPort);
             this.gBoxConnection.Location = new System.Drawing.Point(24, 29);
             this.gBoxConnection.Name = "gBoxConnection";
@@ -89,11 +91,22 @@ namespace smtpRelay_Admin
             this.gBoxConnection.Text = "Connection Configuration";
             this.gBoxConnection.Enter += new System.EventHandler(this.gBoxConnection_Enter);
             // 
+            // checkBoxAuth
+            // 
+            this.checkBoxAuth.AutoSize = true;
+            this.checkBoxAuth.Location = new System.Drawing.Point(680, 143);
+            this.checkBoxAuth.Name = "checkBoxAuth";
+            this.checkBoxAuth.Size = new System.Drawing.Size(101, 29);
+            this.checkBoxAuth.TabIndex = 9;
+            this.checkBoxAuth.Text = "AUTH";
+            this.checkBoxAuth.UseVisualStyleBackColor = true;
+            // 
             // textPassword
             // 
             this.textPassword.Location = new System.Drawing.Point(152, 197);
             this.textPassword.Name = "textPassword";
             this.textPassword.PasswordChar = '*';
+            this.textPassword.ReadOnly = true;
             this.textPassword.Size = new System.Drawing.Size(502, 31);
             this.textPassword.TabIndex = 5;
             // 
@@ -101,6 +114,7 @@ namespace smtpRelay_Admin
             // 
             this.textUser.Location = new System.Drawing.Point(152, 141);
             this.textUser.Name = "textUser";
+            this.textUser.ReadOnly = true;
             this.textUser.Size = new System.Drawing.Size(502, 31);
             this.textUser.TabIndex = 1;
             // 
@@ -269,30 +283,31 @@ namespace smtpRelay_Admin
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(196, 41);
             this.buttonClear.TabIndex = 11;
-            this.buttonClear.Text = "Clear";
+            this.buttonClear.Text = "Clear Log";
             this.buttonClear.UseVisualStyleBackColor = true;
             // 
-            // checkSsl
+            // buttonReset
             // 
-            this.checkSsl.AutoSize = true;
-            this.checkSsl.Location = new System.Drawing.Point(680, 200);
-            this.checkSsl.Name = "checkSsl";
-            this.checkSsl.Size = new System.Drawing.Size(129, 29);
-            this.checkSsl.TabIndex = 3;
-            this.checkSsl.Text = "SSL/TLS";
-            this.checkSsl.UseVisualStyleBackColor = true;
+            this.buttonReset.Location = new System.Drawing.Point(883, 838);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(196, 41);
+            this.buttonReset.TabIndex = 12;
+            this.buttonReset.Text = "Reset";
+            this.buttonReset.UseVisualStyleBackColor = true;
             // 
             // smtpRelayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1753, 895);
+            this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.gBoxStatus);
             this.Controls.Add(this.gBoxEmailConfiguration);
             this.Controls.Add(this.gBoxConnection);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "smtpRelayForm";
             this.Text = "smtpRelay Admin";
             this.Load += new System.EventHandler(this.smtpRelayForm_Load);
@@ -330,7 +345,8 @@ namespace smtpRelay_Admin
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textMessage;
         private System.Windows.Forms.TextBox textBoxLog;
-        private System.Windows.Forms.CheckBox checkSsl;
+        private System.Windows.Forms.CheckBox checkBoxAuth;
+        private System.Windows.Forms.Button buttonReset;
     }
 }
 
