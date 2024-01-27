@@ -261,9 +261,10 @@ namespace smtpRelay_Admin
         private void SaveLastInput()
         {
             Properties.Settings.Default.LastSmtpServer = textHost.Text;
-            Properties.Settings.Default.LastPort = int.Parse(textPort.Text);
             Properties.Settings.Default.LastUsername = textUser.Text;
-            Properties.Settings.Default.LastUseAuth = checkBoxAuth.Checked;
+            Properties.Settings.Default.LastFrom = textFrom.Text;
+            Properties.Settings.Default.LastTo = textTo.Text;
+            Properties.Settings.Default.LastSubject = textSubject.Text;
             Properties.Settings.Default.Save();
         }
         private void LoadLastInput()
@@ -271,7 +272,9 @@ namespace smtpRelay_Admin
             textHost.Text = Properties.Settings.Default.LastSmtpServer;
             textPort.Text = Properties.Settings.Default.LastPort.ToString();
             textUser.Text = Properties.Settings.Default.LastUsername;
-            checkBoxAuth.Checked = Properties.Settings.Default.LastUseAuth;
+            textFrom.Text = Properties.Settings.Default.LastFrom.ToString();
+            textTo.Text = Properties.Settings.Default.LastTo.ToString();
+            textSubject.Text = Properties.Settings.Default.LastSubject;
         }
         private bool TextBoxValidation(out bool isValidFrom, out bool isValidTo)
         {

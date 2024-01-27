@@ -61,13 +61,37 @@ namespace smtpRelay_Admin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool LastUseAuth {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastFrom {
             get {
-                return ((bool)(this["LastUseAuth"]));
+                return ((string)(this["LastFrom"]));
             }
             set {
-                this["LastUseAuth"] = value;
+                this["LastFrom"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastTo {
+            get {
+                return ((string)(this["LastTo"]));
+            }
+            set {
+                this["LastTo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSubject {
+            get {
+                return ((string)(this["LastSubject"]));
+            }
+            set {
+                this["LastSubject"] = value;
             }
         }
     }
