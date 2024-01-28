@@ -46,73 +46,73 @@ namespace smtpRelay_Admin
                 return;
             }
 
-            AppendLog("Beginne Versandprozess...");
+            AppendLog("Starting mailing process...");
             if (useAuth)
             {
                 try
                 {
-                    AppendLog($"Verbinde mit Server {smtpServer} über Port {port}...");
+                    AppendLog($"Connecting to Server {smtpServer} over Port {port}...");
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
                     using (var client = new TcpClient(smtpServer, port))
                     using (var stream = client.GetStream())
                     {
-                        AppendLog("Verbindung erfolgreich. Initialisiere StartTLS...");
+                        AppendLog("Connection successful. Initialize StartTLS...");
                         using (var reader = new StreamReader(stream, Encoding.ASCII))
                         using (var writer = new StreamWriter(stream, Encoding.ASCII) { AutoFlush = true })
                         {
-                            AppendLog("Sende EHLO...");
+                            AppendLog("Send EHLO...");
                             writer.WriteLine("EHLO " + smtpServer);
                             ReadAllResponses(reader);
 
-                            AppendLog("Sende STARTTLS Kommando...");
+                            AppendLog("Send STARTTLS Command...");
                             writer.WriteLine("STARTTLS");
                             string startTlsResponse = reader.ReadLine();
                             AppendLog(startTlsResponse);
                             if (!startTlsResponse.StartsWith("220"))
                             {
-                                throw new InvalidOperationException("Server ist nicht bereit für STARTTLS.");
+                                throw new InvalidOperationException("Server is not ready for STARTTLS.");
                             }
 
-                            AppendLog("Initialisiere sichere SSL/TLS-Verbindung...");
+                            AppendLog("Initialize secure SSL/TLS connection...");
                             using (var sslStream = new SslStream(stream, false,
                                 new RemoteCertificateValidationCallback((s, certificate, chain, sslPolicyErrors) => sslPolicyErrors == SslPolicyErrors.None)))
                             {
                                 sslStream.AuthenticateAsClient(smtpServer, new X509CertificateCollection(), SslProtocols.Tls12, false);
-                                AppendLog("SSL/TLS-Authentifizierung erfolgreich.");
+                                AppendLog("SSL/TLS authentication successful.");
 
                                 using (var secureWriter = new StreamWriter(sslStream, Encoding.ASCII) { AutoFlush = true })
                                 using (var secureReader = new StreamReader(sslStream, Encoding.ASCII))
                                 {
-                                    AppendLog("Sende EHLO nach STARTTLS...");
+                                    AppendLog("Send EHLO to STARTTLS...");
                                     secureWriter.WriteLine("EHLO " + smtpServer);
                                     AppendLog(secureReader.ReadLine());
 
-                                    AppendLog("Starte AUTH LOGIN Prozess...");
+                                    AppendLog("Start AUTH LOGIN Process...");
                                     secureWriter.WriteLine("AUTH LOGIN");
                                     AppendLog(secureReader.ReadLine());
 
-                                    AppendLog("Sende Benutzername...");
+                                    AppendLog("Send Username...");
                                     secureWriter.WriteLine(Convert.ToBase64String(Encoding.ASCII.GetBytes(username)));
                                     AppendLog(secureReader.ReadLine());
 
-                                    AppendLog("Sende Passwort...");
+                                    AppendLog("Send Password...");
                                     secureWriter.WriteLine(Convert.ToBase64String(Encoding.ASCII.GetBytes(password)));
                                     AppendLog(secureReader.ReadLine());
 
-                                    AppendLog("Senden von MAIL FROM...");
+                                    AppendLog("Send MAIL FROM...");
                                     secureWriter.WriteLine("MAIL FROM:<" + username + ">");
                                     AppendLog(secureReader.ReadLine());
 
-                                    AppendLog("Senden von RCPT TO...");
+                                    AppendLog("Send RCPT TO...");
                                     secureWriter.WriteLine("RCPT TO:<" + textTo.Text + ">");
                                     AppendLog(secureReader.ReadLine());
 
-                                    AppendLog("Senden von DATA...");
+                                    AppendLog("Send DATA...");
                                     secureWriter.WriteLine("DATA");
                                     AppendLog(secureReader.ReadLine());
 
-                                    AppendLog("Senden der Nachricht...");
+                                    AppendLog("Send Message...");
                                     secureWriter.WriteLine("From: " + username);
                                     secureWriter.WriteLine("To: " + textTo.Text);
                                     secureWriter.WriteLine("Subject: " + textSubject.Text);
@@ -121,74 +121,74 @@ namespace smtpRelay_Admin
                                     secureWriter.WriteLine(".");
                                     AppendLog(secureReader.ReadLine());
 
-                                    AppendLog("Senden von QUIT...");
+                                    AppendLog("Send QUIT...");
                                     secureWriter.WriteLine("QUIT");
                                     AppendLog(secureReader.ReadLine());
                                 }
                             }
                         }
                     }
-                    AppendLog("E-Mail wurde erfolgreich gesendet.");
+                    AppendLog("Email was sent successfully.");
                 }
                 catch (Exception ex)
                 {
-                    AppendLog("Fehler beim Versenden der E-Mail: " + ex.Message);
+                    AppendLog("Error while sending E-Mail: " + ex.Message);
                 }
             }
             else
             {
                 try
                 {
-                    AppendLog($"Verbinde mit Server {smtpServer} über Port {port}...");
+                    AppendLog($"Connecting to server {smtpServer} via port {port}...");
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
                     using (var client = new TcpClient(smtpServer, port))
                     using (var stream = client.GetStream())
                     {
-                        AppendLog("Verbindung erfolgreich. Initialisiere StartTLS...");
+                        AppendLog("Connection successful. Initializing StartTLS...");
                         using (var reader = new StreamReader(stream, Encoding.ASCII))
                         using (var writer = new StreamWriter(stream, Encoding.ASCII) { AutoFlush = true })
                         {
-                            AppendLog("Sende EHLO...");
+                            AppendLog("Sending EHLO...");
                             writer.WriteLine("EHLO " + smtpServer);
                             ReadAllResponses(reader);
 
-                            AppendLog("Sende STARTTLS Kommando...");
+                            AppendLog("Sending STARTTLS command...");
                             writer.WriteLine("STARTTLS");
                             string startTlsResponse = reader.ReadLine();
                             AppendLog(startTlsResponse);
                             if (!startTlsResponse.StartsWith("220"))
                             {
-                                throw new InvalidOperationException("Server ist nicht bereit für STARTTLS.");
+                                throw new InvalidOperationException("Server is not ready for STARTTLS.");
                             }
 
-                            AppendLog("Initialisiere sichere SSL/TLS-Verbindung...");
+                            AppendLog("Initializing secure SSL/TLS connection...");
                             using (var sslStream = new SslStream(stream, false,
                                 new RemoteCertificateValidationCallback((s, certificate, chain, sslPolicyErrors) => sslPolicyErrors == SslPolicyErrors.None)))
                             {
                                 sslStream.AuthenticateAsClient(smtpServer, new X509CertificateCollection(), SslProtocols.Tls12, false);
-                                AppendLog("SSL/TLS-Authentifizierung erfolgreich.");
+                                AppendLog("SSL/TLS authentication successful.");
 
                                 using (var secureWriter = new StreamWriter(sslStream, Encoding.ASCII) { AutoFlush = true })
                                 using (var secureReader = new StreamReader(sslStream, Encoding.ASCII))
                                 {
-                                    AppendLog("Sende EHLO nach STARTTLS...");
+                                    AppendLog("Sending EHLO after STARTTLS...");
                                     secureWriter.WriteLine("EHLO " + smtpServer);
                                     AppendLog(secureReader.ReadLine());
 
-                                    AppendLog("Senden von MAIL FROM...");
+                                    AppendLog("Sending MAIL FROM...");
                                     secureWriter.WriteLine("MAIL FROM:<" + username + ">");
                                     AppendLog(secureReader.ReadLine());
 
-                                    AppendLog("Senden von RCPT TO...");
+                                    AppendLog("Sending RCPT TO...");
                                     secureWriter.WriteLine("RCPT TO:<" + textTo.Text + ">");
                                     AppendLog(secureReader.ReadLine());
 
-                                    AppendLog("Senden von DATA...");
+                                    AppendLog("Sending DATA...");
                                     secureWriter.WriteLine("DATA");
                                     AppendLog(secureReader.ReadLine());
 
-                                    AppendLog("Senden der Nachricht...");
+                                    AppendLog("Sending the message...");
                                     secureWriter.WriteLine("From: " + username);
                                     secureWriter.WriteLine("To: " + textTo.Text);
                                     secureWriter.WriteLine("Subject: " + textSubject.Text);
@@ -197,20 +197,19 @@ namespace smtpRelay_Admin
                                     secureWriter.WriteLine(".");
                                     AppendLog(secureReader.ReadLine());
 
-                                    AppendLog("Senden von QUIT...");
+                                    AppendLog("Sending QUIT...");
                                     secureWriter.WriteLine("QUIT");
                                     AppendLog(secureReader.ReadLine());
                                 }
                             }
                         }
                     }
-                    AppendLog("E-Mail wurde erfolgreich gesendet.");
+                    AppendLog("Email was successfully sent.");
                 }
                 catch (Exception ex)
                 {
-                    AppendLog("Fehler beim Versenden der E-Mail: " + ex.Message);
+                    AppendLog("Error sending the email: " + ex.Message);
                 }
-
             }
         }
         private void ButtonClear_Click(object sender, EventArgs e)
