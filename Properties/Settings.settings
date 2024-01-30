@@ -6,7 +6,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LastPort" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">587</Value>
+      <Value Profile="(Default)">25</Value>
     </Setting>
     <Setting Name="LastUsername" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

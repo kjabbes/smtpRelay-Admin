@@ -37,7 +37,7 @@ namespace smtpRelay_Admin.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("587")]
+        [global::System.Configuration.DefaultSettingValueAttribute("25")]
         public int LastPort {
             get {
                 return ((int)(this["LastPort"]));
